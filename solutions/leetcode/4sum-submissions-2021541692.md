@@ -1,0 +1,45 @@
+# 4sum/submissions/2021541692
+
+**Platform:** LeetCode  
+**Date:** 2026-06-03  
+
+## Solution
+
+```
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        if(nums.size()<=3)
+        return {};
+        vector<vector<int>>ans;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size()-3;i++){
+            while(i>0&&nums[i]==nums[i-1]&&i<nums.size()-3)
+            i++;
+            for(int j=i+1;j<nums.size()-2;j++){
+                while(j>i+1&&nums[j]==nums[j-1]&&j<nums.size()-2)
+                j++;
+                int l=j+1,r=nums.size()-1;
+                while(l<r){
+                    long long sum=(long long)nums[i]+nums[j]+nums[l]+nums[r];
+                    if(sum<target)
+                    l++;
+                    else if(sum>target)
+                    r--;
+                    else{
+                        ans.push_back({nums[i],nums[j],nums[l],nums[r]});
+                        l++;
+                        r--;
+                        while(l<r&&nums[l]==nums[l-1])
+                        l++;
+                        while(r>l&&nums[r]==nums[r+1])
+                        r--;
+                    }
+                }
+                continue;
+            }
+        }
+        return ans;
+    }
+};
+```

@@ -21,10 +21,10 @@ class Solution {
         
         for(int i=1;i<a.size();i++)
         {
-            int c1=a[i];
-            int c2=a[i]+bestending;
-            bestending=min(c1,c2);
-            ans=min(ans,bestending);
+            int c1=a[i];//-4,2,-3,-1
+            int c2=a[i]+bestending;//-1,-2,-5,-6
+            bestending=min(c1,c2); //-4,-2,-5,-6
+            ans=min(ans,bestending);//-4,-4,-5,-6
         }
         return ans;
     }

@@ -17,7 +17,7 @@ class Solution {
         if(a.size()==0)
         return 0;
         if(a.size()==1)
-        return a[1];
+        return a[0];
         
         for(int i=1;i<a.size();i++)
         {

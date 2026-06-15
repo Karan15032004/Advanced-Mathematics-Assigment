@@ -11,12 +11,13 @@ class Solution {
     int minMeetingRooms(vector<int> &start, vector<int> &end) {
         // code here
         int n=start.size();
-        int i=0,rooms=0,j=0;
+        int i=0,rooms=0,j=0,ans=0;
         sort(start.begin(),start.end());
         sort(end.begin(),end.end());
         while(i<n){
             if(start[i]<end[j]){
                 rooms++;
+                ans=max(ans,rooms);
                 i++;
             }
             else{
@@ -24,7 +25,7 @@ class Solution {
                 j++;
             }
         }
-        return rooms;
+        return ans;
     }
 };
 

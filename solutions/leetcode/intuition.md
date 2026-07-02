@@ -1,38 +1,29 @@
-# Intuition
+# 🧠 Intuition
 
 **Platform:** LeetCode  
-**Date:** 2026-06-08  
+**Date:** 2026-07-02  
 
 ## Solution
 
 ```
 class Solution {
 public:
-string retstring(string s){
-    stack<char> st;
-    for(int i=0;i<s.length();i++){
-        if(s[i]!='#')
-        st.push(s[i]);
-        else if(s[i]=='#'&&!st.empty())
-        st.pop();
-    }
-    s="";
-    while(!st.empty()){
-    s+=st.top();
-    st.pop();
-    }
-    return s;
-}
-    bool backspaceCompare(string s, string t) {
-        s=retstring(s);
-        t=retstring(t);
-        if(s.length()!=t.length())
+bool ispali(string s,int i,int j){
+    while(i<j){
+        if(s[i]!=s[j])
         return false;
-        else{
-            if(s==t)
-            return true;
-            else
-            return false;
-        }    }
+        i++;j--;
+    }
+    return true;
+}
+    bool validPalindrome(string s) {
+        int k=0,i=0,j=s.length()-1;
+        while(i<j){
+        if(s[i]!=s[j])
+        return ispali(s,i+1,j)||ispali(s,i,j-1);
+        i++;j--;
+    }
+    return true;
+    }
 };
 ```

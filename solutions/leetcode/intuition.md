@@ -1,29 +1,46 @@
-# 🧠 Intuition
+# Intuition
 
 **Platform:** LeetCode  
-**Date:** 2026-07-02  
+**Date:** 2026-07-11  
 
 ## Solution
 
 ```
 class Solution {
 public:
-bool ispali(string s,int i,int j){
-    while(i<j){
-        if(s[i]!=s[j])
-        return false;
-        i++;j--;
-    }
-    return true;
-}
-    bool validPalindrome(string s) {
-        int k=0,i=0,j=s.length()-1;
-        while(i<j){
-        if(s[i]!=s[j])
-        return ispali(s,i+1,j)||ispali(s,i,j-1);
-        i++;j--;
-    }
-    return true;
+    struct cmp{
+        bool operator()(pair<int,int>&a,pair<int,int>&b){
+            if(a.first==b.first)
+            return a.second>b.second;
+            return a.first>b.first;
+        }
+    };
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> freq;
+        // Count frequencies
+        for (int& num : nums)
+            freq[num]++; // Increment frequency count for each number
+        
+        priority_queue<pair<int,int>,vector<pair<int,int>>,cmp>pq;
+        for(auto i:freq){
+            int el=i.first;
+            int f=i.second;
+            if(pq.size()<k)
+            pq.push({f,el});
+            else{
+                if(f>pq.top().first){
+                    pq.push({f,el});
+                    pq.pop();
+                }
+                else continue;
+            }
+        }
+        vector<int> res;
+        while(!pq.empty()){
+            res.push_back(pq.top().second);
+            pq.pop();
+        }
+        return res;
     }
 };
 ```

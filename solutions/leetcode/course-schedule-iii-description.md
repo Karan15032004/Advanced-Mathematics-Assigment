@@ -1,7 +1,7 @@
 # course schedule iii/description
 
 **Platform:** LeetCode  
-**Date:** 2026-07-15  
+**Date:** 2026-07-16  
 
 ## Solution
 
